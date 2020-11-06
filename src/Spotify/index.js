@@ -24,6 +24,7 @@ function Spotify() {
     console.log(playlistIndex);
   }
 
+
   useEffect(() => {
     async function getTunes() {
       //   const auth = await fetch(
@@ -40,6 +41,7 @@ function Spotify() {
             "content-type": "application/json",
 
             Authorization: `Bearer BQBuUA2UFebneW8Dz8iCTBcn-2R64uN3eMKcRoXd1HkVzAFT2cMFsFnwsilSTzp3o-nowFPON6kobA4XM_KWN1JflIweOcBPy_F5c20-tXQkD33Y1vtHt05mJtGZ8xMvjiVRBRpIDM97nSo`,
+
           },
         }
       );
@@ -76,7 +78,9 @@ function Spotify() {
           accept: "application/json",
           "content-type": "application/json",
 
+
           Authorization: `Bearer BQDBNETB7ovpYHCpkDaHdld_l9EGxA-pVGPjvmn_R2fS12NRFT_H0ZjtlubPoo81PE1Zu3pYe2KTtsrtEoPZ8BGRyEhm3AjRIGvSFUP-gA8gY9QgRL8HaTy8FaYZMN2NjAHiVNhxzpX5oIY`,
+
         },
       });
       const data = await res.json();
@@ -93,18 +97,18 @@ function Spotify() {
 
       <div>
         <h3>Choose Your Station</h3>
-        <button onClick={() => newGenre("workout", "Squat FM")}>
+        <button className="btn myBtn" onClick={() => newGenre("workout", "Squat FM")}>
           Squat FM
         </button>
-        <button onClick={() => newGenre("jazz", "Energizer FM")}>
+        <button className="btn myBtn" onClick={() => newGenre("jazz", "Energizer FM")}>
           Energizer FM
         </button>
-        <button onClick={() => newGenre("classical", "Recap Task FM")}>
+        <button  className="btn myBtn" onClick={() => newGenre("classical", "Recap Task FM")}>
           Recap Task FM
         </button>
       </div>
       <div>
-        <button onClick={() => handleClick()}>New Playlist</button>
+        <button className="btn myBtn"onClick={() => handleClick()}>New Playlist</button>
       </div>
       <iframe
         title="playlist"
@@ -118,6 +122,7 @@ function Spotify() {
       ></iframe>
       <img className="myImage" src={playlist.images} alt="" />
     </div>
+
   );
 }
 
