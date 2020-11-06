@@ -3,8 +3,26 @@ import React, { useEffect, useState } from "react";
 function Spotify() {
   const [playlist, setPlaylist] = useState({});
   const [url, setUrl] = useState("");
+
+  const [playlistIndex, setPlaylistIndex] = useState(
+    Math.floor(Math.random() * 50)
+  );
+  const [genre, setGenre] = useState("workout");
+
+  function newGenre(genre) {
+    setGenre(genre);
+    handleClick();
+  }
+  console.log(genre);
+  function handleClick() {
+    setPlaylistIndex(Math.floor(Math.random() * 50));
+    console.log(playlistIndex);
+  }
+
+
   console.log(playlist);
   console.log(url);
+
   useEffect(() => {
     async function getTunes() {
       //   const auth = await fetch(
@@ -14,20 +32,24 @@ function Spotify() {
       //   console.log(auth);
 
       const res = await fetch(
-        "https://api.spotify.com/v1/browse/categories/workout/playlists?country=US&limit=50",
+        `https://api.spotify.com/v1/browse/categories/${genre}/playlists?country=US&limit=50`,
         {
           headers: {
             accept: "application/json",
             "content-type": "application/json",
-            Authorization: `Bearer BQAjfkukaj9ZNW_ITabXeEWni_M-qYvXacZPF5hVLnvy0DJgd3XFJkPAiEcPy8t4qaRTc_LI9RsFjKgQPA1ZrSEhfp2zw4cHOhJDoy5ApWhNgyvs7t4CJRHqU-iau6HgR0ttiL-h_m1BtOTFASY`,
+
+            Authorization: `Bearer BQBuUA2UFebneW8Dz8iCTBcn-2R64uN3eMKcRoXd1HkVzAFT2cMFsFnwsilSTzp3o-nowFPON6kobA4XM_KWN1JflIweOcBPy_F5c20-tXQkD33Y1vtHt05mJtGZ8xMvjiVRBRpIDM97nSo`,
+
+    
+
           },
         }
       );
 
       const data = await res.json();
-      console.log(data);
+      // console.log(data);
 
-      const playlist = data.playlists.items[0];
+      const playlist = data.playlists.items[playlistIndex];
 
       const newPlaylist = {
         description: playlist.description,
@@ -36,7 +58,6 @@ function Spotify() {
         uri: playlist.uri.slice(17),
       };
 
-      console.log(playlist.uri);
 
       setPlaylist(newPlaylist);
       playlist.uri &&
@@ -47,29 +68,36 @@ function Spotify() {
       // console.log(playlist.images);
       // console.log(playlist.tracks.href);
     }
-    getTunes();
-  }, []);
+    genre && getTunes();
+  }, [playlistIndex]);
 
   useEffect(() => {
     async function getTracks() {
-      console.log(playlist.tracks);
       const res = await fetch(`${playlist.tracks}`, {
         headers: {
           accept: "application/json",
           "content-type": "application/json",
-          Authorization: `Bearer BQAjfkukaj9ZNW_ITabXeEWni_M-qYvXacZPF5hVLnvy0DJgd3XFJkPAiEcPy8t4qaRTc_LI9RsFjKgQPA1ZrSEhfp2zw4cHOhJDoy5ApWhNgyvs7t4CJRHqU-iau6HgR0ttiL-h_m1BtOTFASY`,
+
+          Authorization: `Bearer BQDBNETB7ovpYHCpkDaHdld_l9EGxA-pVGPjvmn_R2fS12NRFT_H0ZjtlubPoo81PE1Zu3pYe2KTtsrtEoPZ8BGRyEhm3AjRIGvSFUP-gA8gY9QgRL8HaTy8FaYZMN2NjAHiVNhxzpX5oIY`,
+
         },
       });
       const data = await res.json();
-      console.log(data);
     }
     playlist.tracks && getTracks();
   }, [playlist]);
 
   return (
     <div>
-      <h1 className="underline"> SoC FM</h1>
-      <h3 className="capitalise">{playlist.description}</h3>
+      <h1 className="underline">SoC FM</h1>
+
+      <h3 className="capitalise" >{playlist.description.toUpperCase()}</h3>
+      <button onClick={() => handleClick()}>Randomize!</button>
+      <button onClick={() => newGenre("workout")}>Squat FM</button>
+      <button onClick={() => newGenre("jazz")}>Energizer FM</button>
+      <button onClick={() => newGenre("classical")}>Recap Task FM</button>
+
+
       <iframe
         title="playlist"
         src={url}
