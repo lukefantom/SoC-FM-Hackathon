@@ -3,8 +3,21 @@ import React, { useEffect, useState } from "react";
 function Spotify() {
   const [playlist, setPlaylist] = useState({});
   const [url, setUrl] = useState("");
-  console.log(playlist);
-  console.log(url)
+  const [playlistIndex, setPlaylistIndex] = useState(
+    Math.floor(Math.random() * 50)
+  );
+  const [genre, setGenre] = useState("workout");
+
+  function newGenre(genre) {
+    setGenre(genre);
+    handleClick();
+  }
+  console.log(genre);
+  function handleClick() {
+    setPlaylistIndex(Math.floor(Math.random() * 50));
+    console.log(playlistIndex);
+  }
+
   useEffect(() => {
     async function getTunes() {
       //   const auth = await fetch(
@@ -14,7 +27,7 @@ function Spotify() {
       //   console.log(auth);
 
       const res = await fetch(
-        "https://api.spotify.com/v1/browse/categories/workout/playlists?country=US&limit=50",
+        `https://api.spotify.com/v1/browse/categories/${genre}/playlists?country=US&limit=50`,
         {
           headers: {
             accept: "application/json",
@@ -25,9 +38,9 @@ function Spotify() {
       );
 
       const data = await res.json();
-      console.log(data);
+      // console.log(data);
 
-      const playlist = data.playlists.items[0];
+      const playlist = data.playlists.items[playlistIndex];
 
       const newPlaylist = {
         description: playlist.description,
@@ -36,34 +49,28 @@ function Spotify() {
         uri: playlist.uri.slice(17),
       };
 
-      console.log(playlist.uri)
-
       setPlaylist(newPlaylist);
-      playlist.uri && setUrl(`https://open.spotify.com/embed/playlist/${newPlaylist.uri}`)
-      
+      playlist.uri &&
+        setUrl(`https://open.spotify.com/embed/playlist/${newPlaylist.uri}`);
+
       // console.log(playlist.description);
       // console.log(playlist.uri);
       // console.log(playlist.images);
       // console.log(playlist.tracks.href);
     }
     getTunes();
-  }, []);
-
-
-
+  }, [playlistIndex]);
 
   useEffect(() => {
     async function getTracks() {
-      console.log(playlist.tracks);
       const res = await fetch(`${playlist.tracks}`, {
         headers: {
           accept: "application/json",
           "content-type": "application/json",
-          Authorization: `Bearer BQChzgVZhKMhFD0_cu89nvkJy5XBTqQ3pTg6SoCARVUeUPwH9Y08bqdWITXEd5M1rHnLESddAXQ6QZcrYr7sdIV_x8Iy6GVvdbvt3LDpt6HzimEtgK8FO5pHOuSw865aQrFZPNaq`,
+          Authorization: `Bearer BQDBNETB7ovpYHCpkDaHdld_l9EGxA-pVGPjvmn_R2fS12NRFT_H0ZjtlubPoo81PE1Zu3pYe2KTtsrtEoPZ8BGRyEhm3AjRIGvSFUP-gA8gY9QgRL8HaTy8FaYZMN2NjAHiVNhxzpX5oIY`,
         },
       });
       const data = await res.json();
-      console.log(data);
     }
     playlist.tracks && getTracks();
   }, [playlist]);
@@ -71,10 +78,15 @@ function Spotify() {
   return (
     <div>
       <h1>{playlist.description}</h1>
+      <button onClick={() => handleClick()}>Randomize!</button>
+      <button onClick={() => newGenre("workout")}>Squat FM</button>
+      <button onClick={() => newGenre("throwback")}>Energizer FM</button>
+      <button onClick={() => newGenre("classical")}>Recap Task FM</button>
+
       <iframe
         title="playlist"
         src={url}
-       // https://open.spotify.com/embed/playlist/spotify:playlist:37i9dQZF1DX76Wlfdnj7AP
+        // https://open.spotify.com/embed/playlist/spotify:playlist:37i9dQZF1DX76Wlfdnj7AP
         width="300"
         height="380"
         frameBorder="0"
