@@ -2,10 +2,16 @@ import React, { useEffect, useState } from "react";
 
 function Spotify() {
   const [playlist, setPlaylist] = useState({});
-  console.log(playlist)
+  console.log(playlist);
 
   useEffect(() => {
     async function getTunes() {
+      //   const auth = await fetch(
+      //     "https://accounts.spotify.com/authorize?client_id=e75f118de4624c43bede99894b2522bd&response_type=code&redirect_uri=soc-spotify-app://localhost:3000%2Fcallback&scope=user-read-private%20user-read-email&state=34fFs29kd09"
+      //   );
+
+      //   console.log(auth);
+
       const res = await fetch(
         "https://api.spotify.com/v1/browse/categories/workout/playlists?country=US&limit=50",
         {
@@ -18,19 +24,18 @@ function Spotify() {
       );
 
       const data = await res.json();
-      console.log(data)
+      console.log(data);
 
       const playlist = data.playlists.items[0];
 
       const newPlaylist = {
-          description: playlist.description,
-          images: playlist.images[0].url,
-          tracks: playlist.tracks.href,
-          uri: playlist.uri
-        }
+        description: playlist.description,
+        images: playlist.images[0].url,
+        tracks: playlist.tracks.href,
+        uri: playlist.uri,
+      };
 
       setPlaylist(newPlaylist);
-      
 
       // console.log(playlist.description);
       // console.log(playlist.uri);
@@ -42,27 +47,35 @@ function Spotify() {
 
   useEffect(() => {
     async function getTracks() {
-      console.log(playlist.tracks)
-      const res = await fetch(
-        `${playlist.tracks}`,
-        {
-          headers: {
-            accept: "application/json",
-            "content-type": "application/json",
-            Authorization: `Bearer BQDGfFfhn-CaN0FaflabHbdrDab5-4_ojcjATgtsT1eXSgb6_b-L5_MKoZ7706oL8yQa8OH47V8d317Oxmxxo1N_sncB3RPyZ7C81HMYqHSYVYBmgTSGE2f2ZqaXeY42jpN9CLiA`,
-          },
-        }
-      );
+      console.log(playlist.tracks);
+      const res = await fetch(`${playlist.tracks}`, {
+        headers: {
+          accept: "application/json",
+          "content-type": "application/json",
+          Authorization: `Bearer BQDGfFfhn-CaN0FaflabHbdrDab5-4_ojcjATgtsT1eXSgb6_b-L5_MKoZ7706oL8yQa8OH47V8d317Oxmxxo1N_sncB3RPyZ7C81HMYqHSYVYBmgTSGE2f2ZqaXeY42jpN9CLiA`,
+        },
+      });
       const data = await res.json();
       console.log(data);
     }
-    getTracks();
+    playlist.tracks && getTracks();
   }, [playlist]);
 
-  return <div>
-    <h1>{playlist.description}</h1>
-    <img src={playlist.images} alt="" /> 
-  </div>;
+  return (
+    <div>
+      <h1>{playlist.description}</h1>
+      <iframe
+        title="playlist"
+        src="https://open.spotify.com/embed/playlist/37i9dQZF1DX76Wlfdnj7AP"
+        width="300"
+        height="380"
+        frameBorder="0"
+        allowtransparency="true"
+        allow="encrypted-media"
+      ></iframe>
+      <img src={playlist.images} alt="" />
+    </div>
+  );
 }
 
 export default Spotify;
