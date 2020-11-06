@@ -25,10 +25,22 @@
 .myImage {
   width: 350px;
   height: 380px;
+  box-shadow: black 20px 10px 50px;
 }
 .underline {
   text-decoration: underline #4a90e2;
   text-align: left;
+}
+.logo {
+  width: 100px;
+  height: 120px;
+}
+
+.nav-bar {
+  text-align: left;
+}
+.capitalise {
+  text-transform: uppercase;
 }
 
 .App-link {
