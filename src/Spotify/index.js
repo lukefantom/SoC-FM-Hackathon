@@ -4,7 +4,7 @@ function Spotify() {
   const [playlist, setPlaylist] = useState({});
   const [url, setUrl] = useState("");
   console.log(playlist);
-  console.log(url)
+  console.log(url);
   useEffect(() => {
     async function getTunes() {
       //   const auth = await fetch(
@@ -36,11 +36,12 @@ function Spotify() {
         uri: playlist.uri.slice(17),
       };
 
-      console.log(playlist.uri)
+      console.log(playlist.uri);
 
       setPlaylist(newPlaylist);
-      playlist.uri && setUrl(`https://open.spotify.com/embed/playlist/${newPlaylist.uri}`)
-      
+      playlist.uri &&
+        setUrl(`https://open.spotify.com/embed/playlist/${newPlaylist.uri}`);
+
       // console.log(playlist.description);
       // console.log(playlist.uri);
       // console.log(playlist.images);
@@ -48,9 +49,6 @@ function Spotify() {
     }
     getTunes();
   }, []);
-
-
-
 
   useEffect(() => {
     async function getTracks() {
@@ -70,18 +68,19 @@ function Spotify() {
 
   return (
     <div>
-      <h1>{playlist.description}</h1>
+      <h1 className="underline"> SoC FM</h1>
+      <h3>{playlist.description.toUpperCase()}</h3>
       <iframe
         title="playlist"
         src={url}
-       // https://open.spotify.com/embed/playlist/spotify:playlist:37i9dQZF1DX76Wlfdnj7AP
+        // https://open.spotify.com/embed/playlist/spotify:playlist:37i9dQZF1DX76Wlfdnj7AP
         width="300"
         height="380"
         frameBorder="0"
         allowtransparency="true"
         allow="encrypted-media"
       ></iframe>
-      <img src={playlist.images} alt="" />
+      <img className="myImage" src={playlist.images} alt="" />
     </div>
   );
 }
