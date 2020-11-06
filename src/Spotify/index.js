@@ -68,13 +68,8 @@ function Spotify() {
       // console.log(playlist.images);
       // console.log(playlist.tracks.href);
     }
-<<<<<<< HEAD
     genre && getTunes();
   }, [playlistIndex]);
-=======
-    getTunes();
-  }, []);
->>>>>>> main
 
   useEffect(() => {
     async function getTracks() {
@@ -92,17 +87,13 @@ function Spotify() {
 
   return (
     <div>
-<<<<<<< HEAD
-      <h1>{playlist.description}</h1>
+      <h1 className="underline"> SoC FM</h1>
+      <h3>{playlist.description.toUpperCase()}</h3>
       <button onClick={() => handleClick()}>Randomize!</button>
       <button onClick={() => newGenre("workout")}>Squat FM</button>
       <button onClick={() => newGenre("jazz")}>Energizer FM</button>
       <button onClick={() => newGenre("classical")}>Recap Task FM</button>
 
-=======
-      <h1 className="underline"> SoC FM</h1>
-      <h3>{playlist.description.toUpperCase()}</h3>
->>>>>>> main
       <iframe
         title="playlist"
         src={url}
