@@ -19,7 +19,7 @@ function Spotify() {
           headers: {
             accept: "application/json",
             "content-type": "application/json",
-            Authorization: `Bearer BQCt5OUSkjnFIgIjy88bcoHiZv1Rr2FwaRi-Iolx8xttSZb1mYH5qraElF5vuNKqO8UYrqQIfC0UP6_ziAj4jaLcRNz_148FuNCFvAYWmw7Hq1YCkzsH9KMAbJ3xB_a41yuIaqTb`,
+            Authorization: `Bearer BQAjfkukaj9ZNW_ITabXeEWni_M-qYvXacZPF5hVLnvy0DJgd3XFJkPAiEcPy8t4qaRTc_LI9RsFjKgQPA1ZrSEhfp2zw4cHOhJDoy5ApWhNgyvs7t4CJRHqU-iau6HgR0ttiL-h_m1BtOTFASY`,
           },
         }
       );
@@ -57,7 +57,7 @@ function Spotify() {
         headers: {
           accept: "application/json",
           "content-type": "application/json",
-          Authorization: `Bearer BQChzgVZhKMhFD0_cu89nvkJy5XBTqQ3pTg6SoCARVUeUPwH9Y08bqdWITXEd5M1rHnLESddAXQ6QZcrYr7sdIV_x8Iy6GVvdbvt3LDpt6HzimEtgK8FO5pHOuSw865aQrFZPNaq`,
+          Authorization: `Bearer BQAjfkukaj9ZNW_ITabXeEWni_M-qYvXacZPF5hVLnvy0DJgd3XFJkPAiEcPy8t4qaRTc_LI9RsFjKgQPA1ZrSEhfp2zw4cHOhJDoy5ApWhNgyvs7t4CJRHqU-iau6HgR0ttiL-h_m1BtOTFASY`,
         },
       });
       const data = await res.json();
@@ -69,7 +69,7 @@ function Spotify() {
   return (
     <div>
       <h1 className="underline"> SoC FM</h1>
-      <h3>{playlist.description.toUpperCase()}</h3>
+      <h3 className="capitalise">{playlist.description}</h3>
       <iframe
         title="playlist"
         src={url}
