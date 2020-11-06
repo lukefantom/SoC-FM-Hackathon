@@ -3,14 +3,19 @@ import React, { useEffect, useState } from "react";
 function Spotify() {
   const [playlist, setPlaylist] = useState({});
   const [url, setUrl] = useState("");
-<<<<<<< HEAD
   const [playlistIndex, setPlaylistIndex] = useState(
     Math.floor(Math.random() * 50)
   );
   const [genre, setGenre] = useState("workout");
+  const [station, setStation] = useState("Squat FM");
 
-  function newGenre(genre) {
+  function newStation(station) {
+    setStation(station);
+  }
+
+  function newGenre(genre, station) {
     setGenre(genre);
+    newStation(station);
     handleClick();
   }
   console.log(genre);
@@ -19,10 +24,6 @@ function Spotify() {
     console.log(playlistIndex);
   }
 
-=======
-  console.log(playlist);
-  console.log(url);
->>>>>>> main
   useEffect(() => {
     async function getTunes() {
       //   const auth = await fetch(
@@ -43,22 +44,18 @@ function Spotify() {
       );
 
       const data = await res.json();
-      // console.log(data);
+      console.log(data);
 
       const playlist = data.playlists.items[playlistIndex];
 
       const newPlaylist = {
         description: playlist.description,
+        name: playlist.name,
         images: playlist.images[0].url,
         tracks: playlist.tracks.href,
         uri: playlist.uri.slice(17),
       };
 
-<<<<<<< HEAD
-=======
-      console.log(playlist.uri);
-
->>>>>>> main
       setPlaylist(newPlaylist);
       playlist.uri &&
         setUrl(`https://open.spotify.com/embed/playlist/${newPlaylist.uri}`);
@@ -88,12 +85,25 @@ function Spotify() {
   return (
     <div>
       <h1 className="underline"> SoC FM</h1>
-      <h3>{playlist.description.toUpperCase()}</h3>
-      <button onClick={() => handleClick()}>Randomize!</button>
-      <button onClick={() => newGenre("workout")}>Squat FM</button>
-      <button onClick={() => newGenre("jazz")}>Energizer FM</button>
-      <button onClick={() => newGenre("classical")}>Recap Task FM</button>
+      {station && <h4>You Are Now Listening to {station}</h4>}
+      {playlist.name && <h2>{playlist.name.toUpperCase()}</h2>}
+      {playlist.description && <h3>{playlist.description.toUpperCase()}</h3>}
 
+      <div>
+        <h3>Choose Your Station</h3>
+        <button onClick={() => newGenre("workout", "Squat FM")}>
+          Squat FM
+        </button>
+        <button onClick={() => newGenre("jazz", "Energizer FM")}>
+          Energizer FM
+        </button>
+        <button onClick={() => newGenre("classical", "Recap Task FM")}>
+          Recap Task FM
+        </button>
+      </div>
+      <div>
+        <button onClick={() => handleClick()}>New Playlist</button>
+      </div>
       <iframe
         title="playlist"
         src={url}
