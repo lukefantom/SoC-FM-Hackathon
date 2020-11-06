@@ -32,7 +32,7 @@ function Spotify() {
           headers: {
             accept: "application/json",
             "content-type": "application/json",
-            Authorization: `Bearer BQCt5OUSkjnFIgIjy88bcoHiZv1Rr2FwaRi-Iolx8xttSZb1mYH5qraElF5vuNKqO8UYrqQIfC0UP6_ziAj4jaLcRNz_148FuNCFvAYWmw7Hq1YCkzsH9KMAbJ3xB_a41yuIaqTb`,
+            Authorization: `Bearer BQBuUA2UFebneW8Dz8iCTBcn-2R64uN3eMKcRoXd1HkVzAFT2cMFsFnwsilSTzp3o-nowFPON6kobA4XM_KWN1JflIweOcBPy_F5c20-tXQkD33Y1vtHt05mJtGZ8xMvjiVRBRpIDM97nSo`,
           },
         }
       );
@@ -58,7 +58,7 @@ function Spotify() {
       // console.log(playlist.images);
       // console.log(playlist.tracks.href);
     }
-    getTunes();
+    genre && getTunes();
   }, [playlistIndex]);
 
   useEffect(() => {
@@ -80,7 +80,7 @@ function Spotify() {
       <h1>{playlist.description}</h1>
       <button onClick={() => handleClick()}>Randomize!</button>
       <button onClick={() => newGenre("workout")}>Squat FM</button>
-      <button onClick={() => newGenre("throwback")}>Energizer FM</button>
+      <button onClick={() => newGenre("jazz")}>Energizer FM</button>
       <button onClick={() => newGenre("classical")}>Recap Task FM</button>
 
       <iframe
