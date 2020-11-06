@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from "react";
+import Button from "../Button";
 
 function Spotify() {
   const [playlist, setPlaylist] = useState({});
@@ -9,13 +10,9 @@ function Spotify() {
   const [genre, setGenre] = useState("workout");
   const [station, setStation] = useState("Squat FM");
 
-  function newStation(station) {
-    setStation(station);
-  }
-
   function newGenre(genre, station) {
     setGenre(genre);
-    newStation(station);
+    setStation(station);
     handleClick();
   }
   console.log(genre);
@@ -39,7 +36,7 @@ function Spotify() {
             accept: "application/json",
             "content-type": "application/json",
 
-            Authorization: `Bearer BQCFL2xvCJy43AIdaye1XDyJy0NpiPfp3IfssDZ333RVzSoMyIZkY9-OOhjJUdrzvXjuBgbA0RwAhmypA_mhyt_H4B9ZD9o1quRoq4WEqfmqeIHuTYs1gl8xlhF_EvrZIacIBeA-OtBeVAF64pg`,
+            Authorization: `Bearer BQBTmmuX3zUjn6EFDvb3nF4SKDWKAhRHda6clp8rOClCbb1OEu6OWjGmxFd8k3YQTpacbSi1bZRD-1FCEtFDNm7IZ2-NWIzqURXTOMS76iCfkdllGC0K8SgmL55RlkWMvY5sfeB53vpk-0xva0nqel51sg`,
           },
         }
       );
@@ -60,29 +57,24 @@ function Spotify() {
       setPlaylist(newPlaylist);
       playlist.uri &&
         setUrl(`https://open.spotify.com/embed/playlist/${newPlaylist.uri}`);
-
-      // console.log(playlist.description);
-      // console.log(playlist.uri);
-      // console.log(playlist.images);
-      // console.log(playlist.tracks.href);
     }
     genre && getTunes();
-  }, [playlistIndex]);
+  }, [playlistIndex, genre]);
 
-  useEffect(() => {
-    async function getTracks() {
-      const res = await fetch(`${playlist.tracks}`, {
-        headers: {
-          accept: "application/json",
-          "content-type": "application/json",
+  // useEffect(() => {
+  //   async function getTracks() {
+  //     const res = await fetch(`${playlist.tracks}`, {
+  //       headers: {
+  //         accept: "application/json",
+  //         "content-type": "application/json",
 
-          Authorization: `Bearer BQCFL2xvCJy43AIdaye1XDyJy0NpiPfp3IfssDZ333RVzSoMyIZkY9-OOhjJUdrzvXjuBgbA0RwAhmypA_mhyt_H4B9ZD9o1quRoq4WEqfmqeIHuTYs1gl8xlhF_EvrZIacIBeA-OtBeVAF64pg`,
-        },
-      });
-      const data = await res.json();
-    }
-    playlist.tracks && getTracks();
-  }, [playlist]);
+  //         Authorization: `Bearer BQCFL2xvCJy43AIdaye1XDyJy0NpiPfp3IfssDZ333RVzSoMyIZkY9-OOhjJUdrzvXjuBgbA0RwAhmypA_mhyt_H4B9ZD9o1quRoq4WEqfmqeIHuTYs1gl8xlhF_EvrZIacIBeA-OtBeVAF64pg`,
+  //       },
+  //     });
+  //     const data = await res.json();
+  //   }
+  //   playlist.tracks && getTracks();
+  // }, [playlist]);
 
   return (
     <div>
@@ -91,28 +83,29 @@ function Spotify() {
 
       <div>
         <h5>Choose Your Station</h5>
-        <button
-          className="btn myBtn"
-          onClick={() => newGenre("workout", "Squat FM")}
-        >
-          Squat FM
-        </button>
-        <button
-          className="btn myBtn"
-          onClick={() => newGenre("jazz", "Energizer FM")}
-        >
-          Energizer FM
-        </button>
-        <button
-          className="btn myBtn"
-          onClick={() => newGenre("classical", "Recap Task FM")}
-        >
-          Recap Task FM
-        </button>
-
-        <button className="btn myPlaylistBtn" onClick={() => handleClick()}>
-          New Playlist
-        </button>
+        <Button
+          myClass={"btn myBtn"}
+          handleClick={newGenre}
+          genre={"workout"}
+          station={"Squat FM"}
+        />
+        <Button
+          myClass={"btn myBtn"}
+          handleClick={newGenre}
+          genre={"jazz"}
+          station={"Energizer FM"}
+        />
+        <Button
+          myClass={"btn myBtn"}
+          handleClick={newGenre}
+          genre={"classical"}
+          station={"Recap Task FM"}
+        />
+        <Button
+          myClass={"btn myPlaylistBtn"}
+          handleClick={handleClick}
+          station={"New Playlist"}
+        />
       </div>
 
       {playlist.name && <h4>{playlist.name.toUpperCase()}</h4>}
