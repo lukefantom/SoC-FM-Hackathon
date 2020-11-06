@@ -2,8 +2,9 @@ import React, { useEffect, useState } from "react";
 
 function Spotify() {
   const [playlist, setPlaylist] = useState({});
+  const [url, setUrl] = useState("");
   console.log(playlist);
-
+  console.log(url)
   useEffect(() => {
     async function getTunes() {
       //   const auth = await fetch(
@@ -18,7 +19,7 @@ function Spotify() {
           headers: {
             accept: "application/json",
             "content-type": "application/json",
-            Authorization: `Bearer BQC_1egTwN5QTsCw4nYfSdFc7IB6pIO90XE5E-E1g1bLcsUiXh_tUVAwt1yuIvX192BBCcsGktspE44zNr82nCGFpzZsiOzKjbgYFR2uN_wf1FD39nDjN4jBi15_Sbc13YFnSjzc`,
+            Authorization: `Bearer BQCt5OUSkjnFIgIjy88bcoHiZv1Rr2FwaRi-Iolx8xttSZb1mYH5qraElF5vuNKqO8UYrqQIfC0UP6_ziAj4jaLcRNz_148FuNCFvAYWmw7Hq1YCkzsH9KMAbJ3xB_a41yuIaqTb`,
           },
         }
       );
@@ -32,11 +33,14 @@ function Spotify() {
         description: playlist.description,
         images: playlist.images[0].url,
         tracks: playlist.tracks.href,
-        uri: playlist.uri,
+        uri: playlist.uri.slice(17),
       };
 
-      setPlaylist(newPlaylist);
+      console.log(playlist.uri)
 
+      setPlaylist(newPlaylist);
+      playlist.uri && setUrl(`https://open.spotify.com/embed/playlist/${newPlaylist.uri}`)
+      
       // console.log(playlist.description);
       // console.log(playlist.uri);
       // console.log(playlist.images);
@@ -45,6 +49,9 @@ function Spotify() {
     getTunes();
   }, []);
 
+
+
+
   useEffect(() => {
     async function getTracks() {
       console.log(playlist.tracks);
@@ -52,7 +59,7 @@ function Spotify() {
         headers: {
           accept: "application/json",
           "content-type": "application/json",
-          Authorization: `Bearer BQDGfFfhn-CaN0FaflabHbdrDab5-4_ojcjATgtsT1eXSgb6_b-L5_MKoZ7706oL8yQa8OH47V8d317Oxmxxo1N_sncB3RPyZ7C81HMYqHSYVYBmgTSGE2f2ZqaXeY42jpN9CLiA`,
+          Authorization: `Bearer BQChzgVZhKMhFD0_cu89nvkJy5XBTqQ3pTg6SoCARVUeUPwH9Y08bqdWITXEd5M1rHnLESddAXQ6QZcrYr7sdIV_x8Iy6GVvdbvt3LDpt6HzimEtgK8FO5pHOuSw865aQrFZPNaq`,
         },
       });
       const data = await res.json();
@@ -66,7 +73,8 @@ function Spotify() {
       <h1>{playlist.description}</h1>
       <iframe
         title="playlist"
-        src="https://open.spotify.com/embed/playlist/37i9dQZF1DX76Wlfdnj7AP"
+        src={url}
+       // https://open.spotify.com/embed/playlist/spotify:playlist:37i9dQZF1DX76Wlfdnj7AP
         width="300"
         height="380"
         frameBorder="0"
