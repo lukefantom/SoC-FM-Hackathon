@@ -8,8 +8,8 @@ function Spotify() {
         {
           headers: {
             accept: "application/json",
-            contentType: "application/json",
-            authorization: `Bearer BQDBzzhxhzLe_zDhHQebhmnvUkWYaKB4Yg2Ye1UvAfzN5eFHbrmD35-9OMaJMptmhQi7P4AYjO400SgdbEH5mZt_wtecaOjf8TbdOQTul6t3gkziUlyvcMyWVLCCgwl6OAynhjIRQVcekp2flSnnAoViUw`,
+            "content-type": "application/json",
+            Authorization: `Bearer BQCbFWwfklxN-Cr66OuaGWvFb1Tr5GJylisddtPNQV-J8js7P7VPswacCQd4LJccTWE22FIFgJbeAXlJu37oTM6Il2R5U4uBEhZFoo28nLvYvldGBS2IFdXIm7pBZagctq8ulWjHCzSSzoz3i92kTvvFL0TcIJtNdMcjBAg`,
           },
         }
       );
@@ -18,6 +18,7 @@ function Spotify() {
     }
     getTunes();
   }, []);
+  return <div>Hi</div>;
 }
 
 export default Spotify;
