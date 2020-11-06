@@ -3,6 +3,7 @@ import React, { useEffect, useState } from "react";
 function Spotify() {
   const [playlist, setPlaylist] = useState({});
   const [url, setUrl] = useState("");
+<<<<<<< HEAD
   const [playlistIndex, setPlaylistIndex] = useState(
     Math.floor(Math.random() * 50)
   );
@@ -18,6 +19,10 @@ function Spotify() {
     console.log(playlistIndex);
   }
 
+=======
+  console.log(playlist);
+  console.log(url);
+>>>>>>> main
   useEffect(() => {
     async function getTunes() {
       //   const auth = await fetch(
@@ -49,6 +54,11 @@ function Spotify() {
         uri: playlist.uri.slice(17),
       };
 
+<<<<<<< HEAD
+=======
+      console.log(playlist.uri);
+
+>>>>>>> main
       setPlaylist(newPlaylist);
       playlist.uri &&
         setUrl(`https://open.spotify.com/embed/playlist/${newPlaylist.uri}`);
@@ -58,8 +68,13 @@ function Spotify() {
       // console.log(playlist.images);
       // console.log(playlist.tracks.href);
     }
+<<<<<<< HEAD
     genre && getTunes();
   }, [playlistIndex]);
+=======
+    getTunes();
+  }, []);
+>>>>>>> main
 
   useEffect(() => {
     async function getTracks() {
@@ -77,12 +92,17 @@ function Spotify() {
 
   return (
     <div>
+<<<<<<< HEAD
       <h1>{playlist.description}</h1>
       <button onClick={() => handleClick()}>Randomize!</button>
       <button onClick={() => newGenre("workout")}>Squat FM</button>
       <button onClick={() => newGenre("jazz")}>Energizer FM</button>
       <button onClick={() => newGenre("classical")}>Recap Task FM</button>
 
+=======
+      <h1 className="underline"> SoC FM</h1>
+      <h3>{playlist.description.toUpperCase()}</h3>
+>>>>>>> main
       <iframe
         title="playlist"
         src={url}
@@ -93,7 +113,7 @@ function Spotify() {
         allowtransparency="true"
         allow="encrypted-media"
       ></iframe>
-      <img src={playlist.images} alt="" />
+      <img className="myImage" src={playlist.images} alt="" />
     </div>
   );
 }
