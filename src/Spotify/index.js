@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from "react";
+import request from "request";
 import Button from "../Button";
 
 function Spotify() {
@@ -23,40 +24,82 @@ function Spotify() {
 
   useEffect(() => {
     async function getTunes() {
-      //   const auth = await fetch(
+      //const auth = await fetch();
       //     "https://accounts.spotify.com/authorize?client_id=e75f118de4624c43bede99894b2522bd&response_type=code&redirect_uri=soc-spotify-app://localhost:3000%2Fcallback&scope=user-read-private%20user-read-email&state=34fFs29kd09"
-      //   );
 
       //   console.log(auth);
 
-      const res = await fetch(
-        `https://api.spotify.com/v1/browse/categories/${genre}/playlists?country=US&limit=50`,
-        {
-          headers: {
-            accept: "application/json",
-            "content-type": "application/json",
+      // const request = require("request"); // "Request" library
 
-            Authorization: `Bearer BQBTmmuX3zUjn6EFDvb3nF4SKDWKAhRHda6clp8rOClCbb1OEu6OWjGmxFd8k3YQTpacbSi1bZRD-1FCEtFDNm7IZ2-NWIzqURXTOMS76iCfkdllGC0K8SgmL55RlkWMvY5sfeB53vpk-0xva0nqel51sg`,
-          },
-        }
-      );
+      const client_id = "e75f118de4624c43bede99894b2522bd"; // Your client id
+      const client_secret = "e9b4f023a2d94ff0a290b61d31584824"; // Your secret
 
-      const data = await res.json();
-      console.log(data);
-
-      const playlist = data.playlists.items[playlistIndex];
-
-      const newPlaylist = {
-        description: playlist.description,
-        name: playlist.name,
-        images: playlist.images[0].url,
-        tracks: playlist.tracks.href,
-        uri: playlist.uri.slice(17),
+      // your application requests authorization
+      const authOptions = {
+        url: "https://accounts.spotify.com/api/token",
+        headers: {
+          Authorization:
+            "Basic " +
+            Buffer.from(client_id + ":" + client_secret).toString("base64"),
+        },
+        form: {
+          grant_type: "client_credentials",
+        },
+        json: true,
       };
 
-      setPlaylist(newPlaylist);
-      playlist.uri &&
-        setUrl(`https://open.spotify.com/embed/playlist/${newPlaylist.uri}`);
+      request.post(authOptions, async function (error, response, body) {
+        if (!error && response.statusCode === 200) {
+          // use the access token to access the Spotify Web API
+          const token = body.access_token;
+          const options = {
+            url: `https://api.spotify.com/v1/browse/categories/${genre}/playlists?country=US&limit=50`,
+            headers: {
+              Authorization: "Bearer " + token,
+            },
+            json: true,
+          };
+          request.get(options, async function (error, response, body) {
+            console.log(body.playlists);
+            // const data = await response.json();
+            // console.log(data);
+
+            const playlist = body.playlists.items[playlistIndex];
+            console.log(playlist);
+
+            const newPlaylist = {
+              description: playlist.description,
+              name: playlist.name,
+              images: playlist.images[0].url,
+              tracks: playlist.tracks.href,
+              uri: playlist.uri.slice(17),
+            };
+
+            setPlaylist(newPlaylist);
+            playlist.uri &&
+              setUrl(
+                `https://open.spotify.com/embed/playlist/${newPlaylist.uri}`
+              );
+          });
+        }
+      });
+
+      // const res = await fetch(
+      //   `https://api.spotify.com/v1/browse/categories/${genre}/playlists?country=US&limit=50`,
+      //   {
+      //     headers: {
+      //       accept: "application/json",
+      //       "content-type": "application/json",
+
+      //       Authorization: `Bearer BQCFL2xvCJy43AIdaye1XDyJy0NpiPfp3IfssDZ333RVzSoMyIZkY9-OOhjJUdrzvXjuBgbA0RwAhmypA_mhyt_H4B9ZD9o1quRoq4WEqfmqeIHuTYs1gl8xlhF_EvrZIacIBeA-OtBeVAF64pg`,
+      //     },
+      //   }
+      // );
+
+      // console.log(playlist.description);
+      // console.log(playlist.uri);
+      // console.log(playlist.images);
+      // console.log(playlist.tracks.href);
     }
     genre && getTunes();
   }, [playlistIndex, genre]);
@@ -71,7 +114,6 @@ function Spotify() {
   //         Authorization: `Bearer BQCFL2xvCJy43AIdaye1XDyJy0NpiPfp3IfssDZ333RVzSoMyIZkY9-OOhjJUdrzvXjuBgbA0RwAhmypA_mhyt_H4B9ZD9o1quRoq4WEqfmqeIHuTYs1gl8xlhF_EvrZIacIBeA-OtBeVAF64pg`,
   //       },
   //     });
-  //     const data = await res.json();
   //   }
   //   playlist.tracks && getTracks();
   // }, [playlist]);
@@ -105,11 +147,12 @@ function Spotify() {
           myClass={"btn myPlaylistBtn"}
           handleClick={handleClick}
           station={"New Playlist"}
-        />
+        />{" "}
       </div>
 
-      {playlist.name && <h4>{playlist.name.toUpperCase()}</h4>}
-      {playlist.description && <h3>{playlist.description.toUpperCase()}</h3>}
+      {playlist.name && <h5>{playlist.name.toUpperCase()}</h5>}
+
+      {playlist.description && <h5>{playlist.description.toUpperCase()}</h5>}
       <div className="box">
         <iframe
           title="playlist"
