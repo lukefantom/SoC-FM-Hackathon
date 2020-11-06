@@ -36,6 +36,20 @@
   height: 120px;
 }
 
+.myBtn {
+  margin: 30px 10px;
+  background-color: #198262;
+  color: white;
+}
+
+.myBtn:hover {
+  background-color: #4a90e2;
+}
+
+.box {
+  display: flex;
+}
+
 .nav-bar {
   text-align: left;
 }

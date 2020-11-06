@@ -19,7 +19,6 @@ function Spotify() {
     console.log(playlistIndex);
   }
 
-
   console.log(playlist);
   console.log(url);
 
@@ -38,10 +37,7 @@ function Spotify() {
             accept: "application/json",
             "content-type": "application/json",
 
-            Authorization: `Bearer BQBuUA2UFebneW8Dz8iCTBcn-2R64uN3eMKcRoXd1HkVzAFT2cMFsFnwsilSTzp3o-nowFPON6kobA4XM_KWN1JflIweOcBPy_F5c20-tXQkD33Y1vtHt05mJtGZ8xMvjiVRBRpIDM97nSo`,
-
-    
-
+            Authorization: `Bearer BQDp2vVJFluOp4sGFhTK47LNsVGC83TgpuyYQ5FL2lOy_8HWxt_z6iosNTEkapdcICkEP-ewd8eoRMM-k1ctmV-5yk7ohXfs_O29CluBiEFPPn6I_DARxSUHwV6Axtb82eYkprblKW1Nq5dlBOI`,
           },
         }
       );
@@ -57,7 +53,6 @@ function Spotify() {
         tracks: playlist.tracks.href,
         uri: playlist.uri.slice(17),
       };
-
 
       setPlaylist(newPlaylist);
       playlist.uri &&
@@ -77,9 +72,7 @@ function Spotify() {
         headers: {
           accept: "application/json",
           "content-type": "application/json",
-
-          Authorization: `Bearer BQDBNETB7ovpYHCpkDaHdld_l9EGxA-pVGPjvmn_R2fS12NRFT_H0ZjtlubPoo81PE1Zu3pYe2KTtsrtEoPZ8BGRyEhm3AjRIGvSFUP-gA8gY9QgRL8HaTy8FaYZMN2NjAHiVNhxzpX5oIY`,
-
+          Authorization: `Bearer BQDp2vVJFluOp4sGFhTK47LNsVGC83TgpuyYQ5FL2lOy_8HWxt_z6iosNTEkapdcICkEP-ewd8eoRMM-k1ctmV-5yk7ohXfs_O29CluBiEFPPn6I_DARxSUHwV6Axtb82eYkprblKW1Nq5dlBOI`,
         },
       });
       const data = await res.json();
@@ -88,28 +81,41 @@ function Spotify() {
   }, [playlist]);
 
   return (
-    <div>
+    <>
+      {" "}
       <h1 className="underline">SoC FM</h1>
-
-      <h3 className="capitalise" >{playlist.description.toUpperCase()}</h3>
-      <button onClick={() => handleClick()}>Randomize!</button>
-      <button onClick={() => newGenre("workout")}>Squat FM</button>
-      <button onClick={() => newGenre("jazz")}>Energizer FM</button>
-      <button onClick={() => newGenre("classical")}>Recap Task FM</button>
-
-
-      <iframe
-        title="playlist"
-        src={url}
-        // https://open.spotify.com/embed/playlist/spotify:playlist:37i9dQZF1DX76Wlfdnj7AP
-        width="300"
-        height="380"
-        frameBorder="0"
-        allowtransparency="true"
-        allow="encrypted-media"
-      ></iframe>
-      <img className="myImage" src={playlist.images} alt="" />
-    </div>
+      <div>
+        {" "}
+        <button className="btn myBtn" onClick={() => handleClick()}>
+          Randomize!
+        </button>
+        <button className="btn myBtn" onClick={() => newGenre("workout")}>
+          Squat FM
+        </button>
+        <button className="btn myBtn" onClick={() => newGenre("jazz")}>
+          Energizer FM
+        </button>
+        <button className="btn myBtn" onClick={() => newGenre("classical")}>
+          Recap Task FM
+        </button>
+      </div>
+      <h5 className="capitalise">{playlist.description}</h5>
+      <br />
+      <div className="box">
+        {" "}
+        <iframe
+          title="playlist"
+          src={url}
+          // https://open.spotify.com/embed/playlist/spotify:playlist:37i9dQZF1DX76Wlfdnj7AP
+          width="300"
+          height="380"
+          frameBorder="0"
+          allowtransparency="true"
+          allow="encrypted-media"
+        ></iframe>
+        <img className="myImage" src={playlist.images} alt="" />
+      </div>
+    </>
   );
 }
 
