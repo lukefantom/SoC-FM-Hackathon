@@ -42,12 +42,19 @@
   color: white;
 }
 
+.myPlaylistBtn {
+  margin: 30px 10px;
+  background-color: #4a90e2;
+  color: white;
+}
+
 .myBtn:hover {
   background-color: #4a90e2;
 }
 
 .box {
   display: flex;
+  justify-content: center;
 }
 
 .nav-bar {

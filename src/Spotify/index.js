@@ -24,7 +24,6 @@ function Spotify() {
     console.log(playlistIndex);
   }
 
-
   useEffect(() => {
     async function getTunes() {
       //   const auth = await fetch(
@@ -40,8 +39,7 @@ function Spotify() {
             accept: "application/json",
             "content-type": "application/json",
 
-            Authorization: `Bearer BQBuUA2UFebneW8Dz8iCTBcn-2R64uN3eMKcRoXd1HkVzAFT2cMFsFnwsilSTzp3o-nowFPON6kobA4XM_KWN1JflIweOcBPy_F5c20-tXQkD33Y1vtHt05mJtGZ8xMvjiVRBRpIDM97nSo`,
-
+            Authorization: `Bearer BQCFL2xvCJy43AIdaye1XDyJy0NpiPfp3IfssDZ333RVzSoMyIZkY9-OOhjJUdrzvXjuBgbA0RwAhmypA_mhyt_H4B9ZD9o1quRoq4WEqfmqeIHuTYs1gl8xlhF_EvrZIacIBeA-OtBeVAF64pg`,
           },
         }
       );
@@ -78,9 +76,7 @@ function Spotify() {
           accept: "application/json",
           "content-type": "application/json",
 
-
-          Authorization: `Bearer BQDBNETB7ovpYHCpkDaHdld_l9EGxA-pVGPjvmn_R2fS12NRFT_H0ZjtlubPoo81PE1Zu3pYe2KTtsrtEoPZ8BGRyEhm3AjRIGvSFUP-gA8gY9QgRL8HaTy8FaYZMN2NjAHiVNhxzpX5oIY`,
-
+          Authorization: `Bearer BQCFL2xvCJy43AIdaye1XDyJy0NpiPfp3IfssDZ333RVzSoMyIZkY9-OOhjJUdrzvXjuBgbA0RwAhmypA_mhyt_H4B9ZD9o1quRoq4WEqfmqeIHuTYs1gl8xlhF_EvrZIacIBeA-OtBeVAF64pg`,
         },
       });
       const data = await res.json();
@@ -91,38 +87,50 @@ function Spotify() {
   return (
     <div>
       <h1 className="underline"> SoC FM</h1>
-      {station && <h4>You Are Now Listening to {station}</h4>}
-      {playlist.name && <h2>{playlist.name.toUpperCase()}</h2>}
-      {playlist.description && <h3>{playlist.description.toUpperCase()}</h3>}
+      {station && <h6>You Are Now Listening to {station}</h6>}
 
       <div>
-        <h3>Choose Your Station</h3>
-        <button className="btn myBtn" onClick={() => newGenre("workout", "Squat FM")}>
+        <h5>Choose Your Station</h5>
+        <button
+          className="btn myBtn"
+          onClick={() => newGenre("workout", "Squat FM")}
+        >
           Squat FM
         </button>
-        <button className="btn myBtn" onClick={() => newGenre("jazz", "Energizer FM")}>
+        <button
+          className="btn myBtn"
+          onClick={() => newGenre("jazz", "Energizer FM")}
+        >
           Energizer FM
         </button>
-        <button  className="btn myBtn" onClick={() => newGenre("classical", "Recap Task FM")}>
+        <button
+          className="btn myBtn"
+          onClick={() => newGenre("classical", "Recap Task FM")}
+        >
           Recap Task FM
         </button>
-      </div>
-      <div>
-        <button className="btn myBtn"onClick={() => handleClick()}>New Playlist</button>
-      </div>
-      <iframe
-        title="playlist"
-        src={url}
-        // https://open.spotify.com/embed/playlist/spotify:playlist:37i9dQZF1DX76Wlfdnj7AP
-        width="300"
-        height="380"
-        frameBorder="0"
-        allowtransparency="true"
-        allow="encrypted-media"
-      ></iframe>
-      <img className="myImage" src={playlist.images} alt="" />
-    </div>
 
+        <button className="btn myPlaylistBtn" onClick={() => handleClick()}>
+          New Playlist
+        </button>
+      </div>
+
+      {playlist.name && <h4>{playlist.name.toUpperCase()}</h4>}
+      {playlist.description && <h3>{playlist.description.toUpperCase()}</h3>}
+      <div className="box">
+        <iframe
+          title="playlist"
+          src={url}
+          // https://open.spotify.com/embed/playlist/spotify:playlist:37i9dQZF1DX76Wlfdnj7AP
+          width="300"
+          height="380"
+          frameBorder="0"
+          allowtransparency="true"
+          allow="encrypted-media"
+        ></iframe>
+        <img className="myImage" src={playlist.images} alt="" />
+      </div>
+    </div>
   );
 }
 
