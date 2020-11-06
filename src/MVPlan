@@ -1,10 +1,10 @@
 set up folder structure 
 
-import useEffect & useState
+import useEffect & useState DONE
 
-Craeate spotify component (seperate folder)
+Craeate spotify component (seperate folder) DONE
 
-Create initial fetch request inside useEffect hook
+Create initial fetch request inside useEffect hook DONE
 
 useEffect(){
 
@@ -12,9 +12,11 @@ useEffect(){
         const res = await fetch "https://accounts.spotify.com/authorize"
         const 
     }
-}
+} DONE
 
 
 Example fetch with Oauth
 
-"https://api.spotify.com/v1/browse/categories/dinner/playlists?country=SE&limit=10&offset=5" -H "Accept: application/json" -H "Content-Type: application/json" -H "Authorization: Bearer BQDBzzhxhzLe_zDhHQebhmnvUkWYaKB4Yg2Ye1UvAfzN5eFHbrmD35-9OMaJMptmhQi7P4AYjO400SgdbEH5mZt`_wtecaOjf8TbdOQTul6t3gkziUlyvcMyWVLCCgwl6OAynhjIRQVcekp2flSnnAoViUw"`
+"https://api.spotify.com/v1/browse/categories/dinner/playlists?country=SE&limit=10&offset=5" -H "Accept: application/json" -H "Content-Type: application/json" -H "Authorization: Bearer BQDBzzhxhzLe_zDhHQebhmnvUkWYaKB4Yg2Ye1UvAfzN5eFHbrmD35-9OMaJMptmhQi7P4AYjO400SgdbEH5mZt`_wtecaOjf8TbdOQTul6t3gkziUlyvcMyWVLCCgwl6OAynhjIRQVcekp2flSnnAoViUw"` DONE
+
+
