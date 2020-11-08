@@ -20,3 +20,35 @@ Example fetch with Oauth
 "https://api.spotify.com/v1/browse/categories/dinner/playlists?country=SE&limit=10&offset=5" -H "Accept: application/json" -H "Content-Type: application/json" -H "Authorization: Bearer BQDBzzhxhzLe_zDhHQebhmnvUkWYaKB4Yg2Ye1UvAfzN5eFHbrmD35-9OMaJMptmhQi7P4AYjO400SgdbEH5mZt`_wtecaOjf8TbdOQTul6t3gkziUlyvcMyWVLCCgwl6OAynhjIRQVcekp2flSnnAoViUw"` DONE
 
 
+      // const res = await fetch(
+      //   `https://api.spotify.com/v1/browse/categories/${genre}/playlists?country=US&limit=50`,
+      //   {
+      //     headers: {
+      //       accept: "application/json",
+      //       "content-type": "application/json",
+
+      //       Authorization: `Bearer BQCFL2xvCJy43AIdaye1XDyJy0NpiPfp3IfssDZ333RVzSoMyIZkY9-OOhjJUdrzvXjuBgbA0RwAhmypA_mhyt_H4B9ZD9o1quRoq4WEqfmqeIHuTYs1gl8xlhF_EvrZIacIBeA-OtBeVAF64pg`,
+      //     },
+      //   }
+      // );
+
+      // console.log(playlist.description);
+      // console.log(playlist.uri);
+      // console.log(playlist.images);
+      // console.log(playlist.tracks.href);
+
+
+
+        // useEffect(() => {
+  //   async function getTracks() {
+  //     const res = await fetch(`${playlist.tracks}`, {
+  //       headers: {
+  //         accept: "application/json",
+  //         "content-type": "application/json",
+
+  //         Authorization: `Bearer BQCFL2xvCJy43AIdaye1XDyJy0NpiPfp3IfssDZ333RVzSoMyIZkY9-OOhjJUdrzvXjuBgbA0RwAhmypA_mhyt_H4B9ZD9o1quRoq4WEqfmqeIHuTYs1gl8xlhF_EvrZIacIBeA-OtBeVAF64pg`,
+  //       },
+  //     });
+  //   }
+  //   playlist.tracks && getTracks();
+  // }, [playlist]);
