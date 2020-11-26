@@ -1,19 +1,63 @@
-# Hackathon Week 7
+Documentation
 
-For todays hackathon we will be creating a web experience using data from an api - in groups of 4! This will be hard, in 4s, so use all the tools you’ve learned, and you will understand better how to overcome some problems before the project next week.
+Your task is to choose a project you or your partner have coded in the previous weeks (for scale, think hackathon or workshop rather than week eight project!).
 
-## Task 1 - Api Research (20 - 30 mins)
+Write the best documentation you can for it in this README. Remember that good documentation includes (but isn't limited to!) the following:
 
-Research what apis are available. You can use [this](https://apilist.fun) to help, but also go and explore. You can always fall back on pokemon/starwars/quiz/dad-jokes if needs be.
+- Purpose - what problem is it solving?
 
-## Task 2 - Ideate and Plan (30 - 60 mins)
+The purpose of the app is to randomise different playlists based on set genres for different School of Code activities. Each activity becomes it's own radio station.
 
-Use disney ideation to come up with an idea of what you want to build in the day. Then decide what your MVP is, and make it so that you can achieve your MVP before lunch. Break down your idea into its component parts. And prioritise your tasks.
+- What your components do and how they fit together - component tree
 
-## Task 3 - Build your MVP (60 - 180 mins)
+- App
 
-Build your MVP. Use branching and work on different components concurrently. Have the most simple essence of your app working before lunch.
+  - Nav
+  - Spotify Component
 
-## Task 4 - Stretch Goals (rest of the day)
+    - Authorization Helper Function
+      - Heading
+      - Button Component
+      - Media Player Component
+        - Iframe (Renders Media Player)
 
-Have a quick chat about what you are going to build next. Break it down into tasks that you can work on and build it!
+- How to start it and instructions for use
+
+Once opened in terminal type
+
+    npm start
+
+This will open the app in your Localhost
+
+- Examples showing your software in use
+
+  soc-fm.mov
+
+- Dependencies list and what each dependency does in your code
+
+Created with create-react-app - for more information check the react docs
+
+https://create-react-app.dev/docs/getting-started/
+https://reactjs.org/docs/create-a-new-react-app.html
+
+    "jest-dom": "^5.11.5",
+    "@testing-library/react": "^11.1.1",
+    "@testing-library/user-event": "^12.2.0",
+    "react": "^17.0.1",
+    "react-dom": "^17.0.1",
+    "react-scripts": "4.0.0",
+    "web-vitals": "^0.2.4"
+
+- Any other information users and developers might need to know
+
+The Spotify component is the main component and keeps all the state.
+
+There is a playlist state which contains the playlist information pulled from the Spotify API. There is a URL state which is the URL sliced form the Spotify Playlist URI.
+
+There is a genre state, this is used when performing the fetch to the API. It searches for playlists of a specified genre.
+
+Lastly there is a station state, that contains the string of the current radio station playing
+
+- Authorisation
+
+The authorisation requires users to create an app in the Spotify developer, create a client ID and secret for their own app
