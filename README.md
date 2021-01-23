@@ -1,9 +1,5 @@
 Documentation
 
-Your task is to choose a project you or your partner have coded in the previous weeks (for scale, think hackathon or workshop rather than week eight project!).
-
-Write the best documentation you can for it in this README. Remember that good documentation includes (but isn't limited to!) the following:
-
 - Purpose - what problem is it solving?
 
 The purpose of the app is to randomise different playlists based on set genres for different School of Code activities. Each activity becomes it's own radio station.
