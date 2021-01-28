@@ -1,7 +1,8 @@
-#Soc FM
+# Soc FM
 
 The app is designed to randomise different playlists based on set genres for different School of Code activities. Each activity becomes it's own radio station.
 
+## Component Tree
 - App
 
   - Nav
@@ -42,7 +43,7 @@ https://reactjs.org/docs/create-a-new-react-app.html
 
 ## App Details
 
-The Spotify component is the main component and keeps all the state.
+The Spotify component is the main component and manages the state.
 
 There is a playlist state which contains the playlist information pulled from the Spotify API. There is a URL state which is the URL sliced form the Spotify Playlist URI.
 
