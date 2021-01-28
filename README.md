@@ -1,6 +1,17 @@
 # Soc FM
 
+## School of Code - Hackathon Week 7
+
 The app is designed to randomise different playlists based on set genres for different School of Code activities. Each activity becomes it's own radio station.
+
+[!Homepage](https://github.com/lukefantom/SoC-FM-Hackathon/blob/main/public/Screen%20Shot%202021-01-28%20at%2012.27.19.png)
+
+Our brief was to create a web experience using data from an API. This was our first time working remotely in a group of four rather the pair-programming, we spent the morning researching various API's and picked out 3 potential favourites as a group.
+
+We used Disney Ideation to come up with our idea for the hackathon and worked through the Dreamer, Realist and Critic.
+We decided on an MVP which could be achieved by lunchtime and then set some stretch goals which we could work on in the afternoon.
+We used Trello to make a Kanban board - to map out our tasks and delegate the workload.
+We broke down our idea in component parts and prioritised our tasks.
 
 ## Component Tree
 - App
